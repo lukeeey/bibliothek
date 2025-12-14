@@ -125,9 +125,9 @@ public class VersionBuildsController {
           build.channelOrDefault(),
           build.promotedOrDefault(),
           build.changes(),
-          build.downloads(),
           build.supportedJavaVersions(),
-          build.supportedBedrockVersions()
+          build.supportedBedrockVersions(),
+          build.downloads()
         )).toList()
       );
     }
@@ -144,12 +144,12 @@ public class VersionBuildsController {
       boolean promoted,
       @Schema(name = "changes")
       List<Build.Change> changes,
-      @Schema(name = "downloads")
-      Map<String, Build.Download> downloads,
       @Schema(name = "supportedJavaVersions")
       List<String> supportedJavaVersions,
       @Schema(name = "supportedBedrockVersions")
-      List<String> supportedBedrockVersions
+      List<String> supportedBedrockVersions,
+      @Schema(name = "downloads")
+      Map<String, Build.Download> downloads
     ) {
     }
   }
