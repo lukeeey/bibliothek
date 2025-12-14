@@ -51,7 +51,9 @@ public record Build(
   @JsonProperty
   @Nullable Channel channel,
   @JsonInclude(JsonInclude.Include.NON_NULL)
-  @Nullable Boolean promoted
+  @Nullable Boolean promoted,
+  List<String> supportedJavaVersions,
+  List<String> supportedBedrockVersions
 ) {
   public Channel channelOrDefault() {
     return Objects.requireNonNullElse(this.channel(), Build.Channel.DEFAULT);

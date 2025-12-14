@@ -153,7 +153,11 @@ public class VersionBuildController {
     @Schema(name = "changes")
     List<Build.Change> changes,
     @Schema(name = "downloads")
-    Map<String, Build.Download> downloads
+    Map<String, Build.Download> downloads,
+    @Schema(name = "supportedJavaVersions")
+    List<String> supportedJavaVersions,
+    @Schema(name = "supportedBedrockVersions")
+    List<String> supportedBedrockVersions
   ) {
     static BuildResponse from(final Project project, final Version version, final Build build) {
       return new BuildResponse(
@@ -165,7 +169,9 @@ public class VersionBuildController {
         build.channelOrDefault(),
         build.promotedOrDefault(),
         build.changes(),
-        build.downloads()
+        build.downloads(),
+        build.supportedJavaVersions(),
+        build.supportedBedrockVersions()
       );
     }
   }
