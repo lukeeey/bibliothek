@@ -52,8 +52,8 @@ public record Build(
   @Nullable Channel channel,
   @JsonInclude(JsonInclude.Include.NON_NULL)
   @Nullable Boolean promoted,
-  List<String> supportedJavaVersions,
-  List<String> supportedBedrockVersions
+  @JsonInclude(JsonInclude.Include.NON_NULL)
+  @Nullable Metadata metadata
 ) {
   public Channel channelOrDefault() {
     return Objects.requireNonNullElse(this.channel(), Build.Channel.DEFAULT);
@@ -91,5 +91,30 @@ public record Build(
     // NOTE: this pattern cannot contain any capturing groups
     @Language("RegExp")
     public static final String PATTERN = "[a-zA-Z0-9._-]+";
+  }
+
+  @Schema
+  public record Metadata(
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Nullable JavaMetadata java,
+
+
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Nullable BedrockMetadata bedrock
+  ) {
+  }
+
+  @Schema
+  public record JavaMetadata(
+    @Schema
+    List<String> versions
+  ) {
+  } 
+
+  @Schema
+  public record BedrockMetadata(
+    @Schema
+    List<String> versions
+  ) {
   }
 }
