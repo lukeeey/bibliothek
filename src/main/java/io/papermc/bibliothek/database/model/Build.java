@@ -109,7 +109,7 @@ public record Build(
     @Schema
     List<String> versions
   ) {
-  } 
+  }
 
   @Schema
   public record BedrockMetadata(
